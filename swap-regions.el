@@ -34,7 +34,6 @@
 ;;
 ;; Tips: these two region don't need to belong to the same buffer.
 
-;; TODO: Replace this-region with last-region
 
 ;;; Code:
 
@@ -49,9 +48,10 @@
 (add-hook 'deactivate-mark-hook #'swap-regions-track-region)
 
 ;;;###autoload
-(defun swap-regions (beg end)
-  "Exchange the region and last region."
-  (interactive "*r")
+(defun swap-regions (beg end &optional arg)
+  "Exchange the region and last region.
+If with a prefix argument, replace the region with last region."
+  (interactive "*r\nP")
   (unless swap-regions-last-region
     (user-error "Nedd previous region"))
   (if (region-active-p)
@@ -63,17 +63,23 @@
         (last-pos (cdr swap-regions-last-region))
         (this-buf (car swap-regions-this-region))
         (this-pos (cdr swap-regions-this-region)))
-    (if (eq last-buf this-buf)
-        ;; Maybe use `transpose-regions' instead?
-        (transpose-subr-1 last-pos this-pos)
-      (let ((this-text (buffer-substring (car this-pos) (cdr this-pos)))
-            (last-text (with-current-buffer last-buf
-                         (buffer-substring (car last-pos) (cdr last-pos)))))
-        (delete-region (car this-pos) (cdr this-pos))
-        (insert last-text)
-        (with-current-buffer last-buf
-          (delete-region (car last-pos) (cdr last-pos))
-          (insert this-text))))))
+    (if arg
+        (let ((last-text
+               (with-current-buffer last-buf
+                 (buffer-substring (car last-pos) (cdr last-pos)))))
+          (delete-region beg end)
+          (insert last-text))
+      (if (eq last-buf this-buf)
+          ;; Maybe use `transpose-regions' instead?
+          (transpose-subr-1 last-pos this-pos)
+        (let ((this-text (buffer-substring (car this-pos) (cdr this-pos)))
+              (last-text (with-current-buffer last-buf
+                           (buffer-substring (car last-pos) (cdr last-pos)))))
+          (delete-region (car this-pos) (cdr this-pos))
+          (insert last-text)
+          (with-current-buffer last-buf
+            (delete-region (car last-pos) (cdr last-pos))
+            (insert this-text)))))))
 
 (provide 'swap-regions)
 ;;; swap-regions.el ends here

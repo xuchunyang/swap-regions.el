@@ -1,7 +1,10 @@
 # swap-regions.el
 
 This package provides a command `swap-regions`, which exchanges current region
-and previous region. These two region don't need to belong to the same buffer.
+and previous region. When called with a prefix argument, replaces current
+region with previous region.
+
+These two region don't need to belong to the same buffer.
 
 ## Setup
 
