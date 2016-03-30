@@ -14,10 +14,9 @@ These two regions don't need to belong to the same buffer.
 
 ## Setup
 
-To enable, use:
-
-    (require 'swap-regions)
+If you install this package with Emacs's packaging system, no setup is
+required.
 
 (Optional) To bind the command `swap-regions` globally, use e.g.:
 
-    (define-key global-map "\C-c\C-t" #'swap-regions)
+    (global-set-key "\C-c\C-t" #'swap-regions)

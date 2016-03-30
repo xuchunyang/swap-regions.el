@@ -22,9 +22,9 @@
 
 ;;; Commentary:
 
-;; To enable, use:
-;;
-;; (require 'swap-regions)
+;; If you install this package with Emacs's packaging system, no setup is
+;; needed. However, if you want to install it manually, you have to set the
+;; `load-path` correctly and load it.
 ;;
 ;; To exchange current (active) region and previous region, call M-x
 ;; swap-regions, if you think it is worth, you can assign a key to it,
@@ -41,13 +41,16 @@
 (defvar swap-regions-this-region nil)
 (defvar swap-regions-current-buffer nil)
 
+;;;###autoload
 (defun swap-regions-track-region ()
   (setq swap-regions-last-region
         (cons (current-buffer)
               (cons (region-beginning) (region-end)))))
 
+;;;###autoload
 (add-hook 'deactivate-mark-hook #'swap-regions-track-region)
 
+;;;###autoload
 (defun swap-regions-track-buffer ()
   (cond ((null swap-regions-current-buffer)
          (setq swap-regions-current-buffer (current-buffer)))
@@ -57,6 +60,7 @@
            (swap-regions-track-region))
          (setq swap-regions-current-buffer (current-buffer)))))
 
+;;;###autoload
 (add-hook 'activate-mark-hook #'swap-regions-track-buffer)
 
 ;;;###autoload
