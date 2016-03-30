@@ -49,15 +49,15 @@
 (add-hook 'deactivate-mark-hook #'swap-regions-track-region)
 
 ;;;###autoload
-(defun swap-regions ()
-  "Swap two recent regions."
-  (interactive "*")
+(defun swap-regions (beg end)
+  "Exchange the region and last region."
+  (interactive "*r")
   (unless swap-regions-last-region
     (user-error "Nedd previous region"))
   (if (region-active-p)
       (setq swap-regions-this-region
             (cons (current-buffer)
-                  (cons (region-beginning) (region-end))))
+                  (cons beg end)))
     (user-error "Need active region"))
   (let ((last-buf (car swap-regions-last-region))
         (last-pos (cdr swap-regions-last-region))
