@@ -64,6 +64,7 @@
         (this-buf (car swap-regions-this-region))
         (this-pos (cdr swap-regions-this-region)))
     (if (eq last-buf this-buf)
+        ;; Maybe use `transpose-regions' instead?
         (transpose-subr-1 last-pos this-pos)
       (let ((text1 (with-current-buffer last-buf
                      (buffer-substring (car last-pos) (cdr last-pos))))
