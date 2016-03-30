@@ -39,6 +39,7 @@
 
 (defvar swap-regions-last-region nil)
 (defvar swap-regions-this-region nil)
+(defvar swap-regions-current-buffer nil)
 
 (defun swap-regions-track-region ()
   (setq swap-regions-last-region
@@ -46,6 +47,17 @@
               (cons (region-beginning) (region-end)))))
 
 (add-hook 'deactivate-mark-hook #'swap-regions-track-region)
+
+(defun swap-regions-track-buffer ()
+  (cond ((null swap-regions-current-buffer)
+         (setq swap-regions-current-buffer (current-buffer)))
+        ((eq swap-regions-current-buffer (current-buffer)))
+        (t
+         (with-current-buffer swap-regions-current-buffer
+           (swap-regions-track-region))
+         (setq swap-regions-current-buffer (current-buffer)))))
+
+(add-hook 'activate-mark-hook #'swap-regions-track-buffer)
 
 ;;;###autoload
 (defun swap-regions (beg end &optional arg)
