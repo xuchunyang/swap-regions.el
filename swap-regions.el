@@ -66,16 +66,14 @@
     (if (eq last-buf this-buf)
         ;; Maybe use `transpose-regions' instead?
         (transpose-subr-1 last-pos this-pos)
-      (let ((text1 (with-current-buffer last-buf
-                     (buffer-substring (car last-pos) (cdr last-pos))))
-            (text2 (with-current-buffer this-buf
-                     (buffer-substring (car this-pos) (cdr this-pos)))))
+      (let ((this-text (buffer-substring (car this-pos) (cdr this-pos)))
+            (last-text (with-current-buffer last-buf
+                         (buffer-substring (car last-pos) (cdr last-pos)))))
+        (delete-region (car this-pos) (cdr this-pos))
+        (insert last-text)
         (with-current-buffer last-buf
           (delete-region (car last-pos) (cdr last-pos))
-          (insert text2))
-        (with-current-buffer this-buf
-          (delete-region (car this-pos) (cdr this-pos))
-          (insert text1))))))
+          (insert this-text))))))
 
 (provide 'swap-regions)
 ;;; swap-regions.el ends here
