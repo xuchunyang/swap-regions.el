@@ -32,7 +32,7 @@
 ;;
 ;; (define-key global-map "\C-c\C-t" #'swap-regions)
 ;;
-;; Tips: these two region don't need to belong to the same buffer.
+;; Tips: these two regions don't need to belong to the same buffer.
 
 
 ;;; Code:
@@ -53,7 +53,7 @@
 If with a prefix argument, replace the region with last region."
   (interactive "*r\nP")
   (unless swap-regions-last-region
-    (user-error "Nedd previous region"))
+    (user-error "Need previous region"))
   (if (region-active-p)
       (setq swap-regions-this-region
             (cons (current-buffer)
