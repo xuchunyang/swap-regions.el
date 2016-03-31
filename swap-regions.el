@@ -57,7 +57,8 @@
         ((eq swap-regions-current-buffer (current-buffer)))
         (t
          (with-current-buffer swap-regions-current-buffer
-           (swap-regions-track-region))
+           (when (region-active-p)
+             (swap-regions-track-region)))
          (setq swap-regions-current-buffer (current-buffer)))))
 
 ;;;###autoload
