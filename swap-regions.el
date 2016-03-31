@@ -52,7 +52,7 @@
 
 ;;;###autoload
 (defun swap-regions-track-buffer ()
-  (cond ((null swap-regions-current-buffer)
+  (cond ((not (buffer-live-p swap-regions-current-buffer))
          (setq swap-regions-current-buffer (current-buffer)))
         ((eq swap-regions-current-buffer (current-buffer)))
         (t
