@@ -117,5 +117,11 @@ region with the current region."
         (pulse-momentary-highlight-region p0 p1))
     (insert text)))
 
+;; For `unload-feature'
+(defun swap-regions-unload-function ()
+  (remove-hook 'activate-mark-hook #'swap-regions-track-buffer)
+  (remove-hook 'deactivate-mark-hook #'swap-regions-track-region)
+  nil)
+
 (provide 'swap-regions)
 ;;; swap-regions.el ends here
