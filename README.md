@@ -18,3 +18,8 @@ required.
 (Optional) To bind the command `swap-regions` globally, use e.g.:
 
     (global-set-key "\C-c\C-t" #'swap-regions)
+
+## Compatibility
+
+`swap-regions.el` doesn't support the rectangle region (`C-x <SPC>`) or any
+other nonstandard region.
