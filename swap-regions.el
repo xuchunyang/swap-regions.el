@@ -66,9 +66,14 @@
 
 ;;;###autoload
 (defun swap-regions (beg end &optional arg)
-  "Exchange the region and last region.
-If with a prefix argument, replace the region with last region."
-  (interactive "*r\nP")
+  "Swap the current region and the last region.
+
+Prefixed with one \\[universal-argument], replace the current
+region with the last region.
+
+Prefixed with two \\[universal-argument]'s, replace the last
+region with the current region."
+  (interactive "*r\np")
   (unless swap-regions-last-region
     (user-error "Need previous region"))
   (if (region-active-p)
@@ -76,16 +81,23 @@ If with a prefix argument, replace the region with last region."
             (cons (current-buffer)
                   (cons beg end)))
     (user-error "Need active region"))
-  (let ((last-buf (car swap-regions-last-region))
-        (last-pos (cdr swap-regions-last-region))
-        (this-buf (car swap-regions-this-region))
-        (this-pos (cdr swap-regions-this-region)))
-    (if arg
-        (let ((last-text
-               (with-current-buffer last-buf
-                 (buffer-substring (car last-pos) (cdr last-pos)))))
-          (delete-region beg end)
-          (insert last-text))
+  (let* ((last-buf (car swap-regions-last-region))
+         (last-pos (cdr swap-regions-last-region))
+         (last-text (with-current-buffer last-buf
+                      (buffer-substring (car last-pos) (cdr last-pos))))
+         (this-buf (car swap-regions-this-region))
+         (this-pos (cdr swap-regions-this-region))
+         (this-text (buffer-substring beg end)))
+    (cond
+     ((= arg 4)
+      (delete-region beg end)
+      (swap-regions-insert last-text))
+     ((= arg 16)
+      (with-current-buffer last-buf
+        (goto-char (car last-pos))
+        (delete-region (car last-pos) (cdr last-pos))
+        (swap-regions-insert this-text)))
+     (t
       (if (eq last-buf this-buf)
           ;; Maybe use `transpose-regions' instead?
           (transpose-subr-1 last-pos this-pos)
@@ -96,7 +108,14 @@ If with a prefix argument, replace the region with last region."
           (insert last-text)
           (with-current-buffer last-buf
             (delete-region (car last-pos) (cdr last-pos))
-            (insert this-text)))))))
+            (insert this-text))))))))
+
+(defun swap-regions-insert (text)
+  (if (require 'pulse nil 'no-error)
+      (let ((p0 (point))
+            (p1 (progn (insert text) (point))))
+        (pulse-momentary-highlight-region p0 p1))
+    (insert text)))
 
 (provide 'swap-regions)
 ;;; swap-regions.el ends here

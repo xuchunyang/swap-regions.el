@@ -2,11 +2,9 @@
 
 ## Introduction
 
-This package provides a command `swap-regions`, which exchanges current region
-and previous region. When called with a prefix argument, replaces current
-region with previous region.
-
-These two regions don't need to belong to the same buffer.
+This package provides a command `swap-regions`, which swaps the current region
+and the previous region. When called with prefix argument, do a replacement
+between the current region with the previous region.
 
 ## Screenshot
 
