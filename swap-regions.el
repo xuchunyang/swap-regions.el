@@ -85,6 +85,9 @@ region with the last region.
 Prefixed with two \\[universal-argument]'s, replace the last
 region with the current region."
   (interactive "*r\np")
+  (unless swap-regions-mode
+    (user-error
+     "swap-regions-mode is not enabled, type M-x swap-regions-mode to enable"))
   (unless swap-regions-last-region
     (user-error "Need previous region"))
   (if (region-active-p)
