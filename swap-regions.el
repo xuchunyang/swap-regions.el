@@ -42,16 +42,11 @@
 (defvar swap-regions-this-region nil)
 (defvar swap-regions-current-buffer nil)
 
-;;;###autoload
 (defun swap-regions-track-region ()
   (setq swap-regions-last-region
         (cons (current-buffer)
               (cons (region-beginning) (region-end)))))
 
-;;;###autoload
-(add-hook 'deactivate-mark-hook #'swap-regions-track-region)
-
-;;;###autoload
 (defun swap-regions-track-buffer ()
   (cond ((not (buffer-live-p swap-regions-current-buffer))
          (setq swap-regions-current-buffer (current-buffer)))
@@ -63,7 +58,22 @@
          (setq swap-regions-current-buffer (current-buffer)))))
 
 ;;;###autoload
-(add-hook 'activate-mark-hook #'swap-regions-track-buffer)
+(define-minor-mode swap-regions-mode
+  nil nil nil nil
+  :global t
+  (if swap-regions-mode
+      (progn
+        (add-hook 'activate-mark-hook #'swap-regions-track-buffer)
+        (add-hook 'deactivate-mark-hook #'swap-regions-track-region))
+    (remove-hook 'activate-mark-hook #'swap-regions-track-buffer)
+    (remove-hook 'deactivate-mark-hook #'swap-regions-track-region)))
+
+(defun swap-regions-insert (text)
+  (if (require 'pulse nil 'no-error)
+      (let ((p0 (point))
+            (p1 (progn (insert text) (point))))
+        (pulse-momentary-highlight-region p0 p1))
+    (insert text)))
 
 ;;;###autoload
 (defun swap-regions (beg end &optional arg)
@@ -110,19 +120,6 @@ region with the current region."
           (with-current-buffer last-buf
             (delete-region (car last-pos) (cdr last-pos))
             (insert this-text))))))))
-
-(defun swap-regions-insert (text)
-  (if (require 'pulse nil 'no-error)
-      (let ((p0 (point))
-            (p1 (progn (insert text) (point))))
-        (pulse-momentary-highlight-region p0 p1))
-    (insert text)))
-
-;; For `unload-feature'
-(defun swap-regions-unload-function ()
-  (remove-hook 'activate-mark-hook #'swap-regions-track-buffer)
-  (remove-hook 'deactivate-mark-hook #'swap-regions-track-region)
-  nil)
 
 (provide 'swap-regions)
 ;;; swap-regions.el ends here
