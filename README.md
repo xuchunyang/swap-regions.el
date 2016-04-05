@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This package provides a `swap-regions' command to swap (and replace) two region
+This package provides a `swap-regions` command to swap (and replace) two regions
 of text.
 
 ## Screenshot

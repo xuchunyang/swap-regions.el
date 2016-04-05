@@ -24,7 +24,7 @@
 ;;; Commentary:
 ;;
 ;; This package provides a `swap-regions' command to swap (and replace) two
-;; region of text.
+;; regions of text.
 ;;
 ;;
 ;; Setup
