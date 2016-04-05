@@ -1,4 +1,4 @@
-;;; swap-regions.el --- Swap current region and previous region  -*- lexical-binding: t; -*-
+;;; swap-regions.el --- Swap two regions of text -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2016  Chunyang Xu
 
@@ -22,19 +22,42 @@
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ;;; Commentary:
-
-;; If you install this package with Emacs's packaging system, no setup is
-;; needed. However, if you want to install it manually, you have to set the
-;; `load-path` correctly and load it.
 ;;
-;; To exchange current (active) region and previous region, call M-x
-;; swap-regions, if you think it is worth, you can assign a key to it,
-;; use e.g.:
+;; This package provides a `swap-regions' command to swap (and replace) two
+;; region of text.
 ;;
-;; (define-key global-map "\C-c\C-t" #'swap-regions)
 ;;
-;; Tips: these two regions don't need to belong to the same buffer.
-
+;; Setup
+;; =====
+;;
+;; Before you can use the `swap-regions' command, you need to enable
+;; `swap-regions-mode'. Type M-x swap-regions-mode or adding:
+;;
+;;   (swap-regions-mode)
+;;
+;; to your init file.
+;;
+;;
+;; Usage
+;; =====
+;;
+;; M-x swap-regions
+;;   Swap the current (active) region and the previous region
+;;
+;; C-u M-x swap-regions
+;;   Replace the current (active) region with the previous region
+;;
+;; C-u C-u M-x swap-regions
+;;   Replace the previous region with the current (active) region
+;;
+;;
+;; Key Binding
+;; ===========
+;;
+;; If you use the command a lot, you should bind some key to it.  Here is my
+;; binding, please modify the key to your own liking:
+;;
+;;   (global-set-key "\C-c\C-t" #'swap-regions)
 
 ;;; Code:
 
@@ -77,12 +100,12 @@
 
 ;;;###autoload
 (defun swap-regions (beg end &optional arg)
-  "Swap the current region and the last region.
+  "Swap the current region and the previous region.
 
 Prefixed with one \\[universal-argument], replace the current
-region with the last region.
+region with the previous region.
 
-Prefixed with two \\[universal-argument]'s, replace the last
+Prefixed with two \\[universal-argument]'s, replace the previous
 region with the current region."
   (interactive "*r\np")
   (unless swap-regions-mode
