@@ -1,4 +1,4 @@
-# swap-regions.el
+# swap-regions.el [![MELPA](http://melpa.org/packages/swap-regions-badge.svg)](http://melpa.org/#/swap-regions)
 
 ## Introduction
 

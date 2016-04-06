@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2016  Chunyang Xu
 
-;; Author: Chunyang Xu <xuchunyang56@gmail.com>
+;; Author: Chunyang Xu <xuchunyang.me@gmail.com>
 ;; URL: https://github.com/xuchunyang/swap-regions.el
 ;; Keywords: convenience
 ;; Version: 0.01
