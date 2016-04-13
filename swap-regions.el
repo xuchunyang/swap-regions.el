@@ -66,9 +66,11 @@
 (defvar swap-regions-current-buffer nil)
 
 (defun swap-regions-track-region ()
-  (setq swap-regions-last-region
-        (cons (current-buffer)
-              (cons (region-beginning) (region-end)))))
+  ;; Double check if the region is available
+  (when (use-region-p)
+    (setq swap-regions-last-region
+          (cons (current-buffer)
+                (cons (region-beginning) (region-end))))))
 
 (defun swap-regions-track-buffer ()
   (cond ((not (buffer-live-p swap-regions-current-buffer))
