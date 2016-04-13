@@ -66,9 +66,10 @@
 (defvar swap-regions-current-buffer nil)
 
 (defun swap-regions-track-region ()
-  (setq swap-regions-last-region
-        (cons (current-buffer)
-              (cons (region-beginning) (region-end)))))
+  (when (mark)
+    (setq swap-regions-last-region
+          (cons (current-buffer)
+                (cons (region-beginning) (region-end))))))
 
 (defun swap-regions-track-buffer ()
   (cond ((not (buffer-live-p swap-regions-current-buffer))
