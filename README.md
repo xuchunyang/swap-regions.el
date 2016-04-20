@@ -38,3 +38,11 @@ If you use the command a lot, you should bind some key to it.  Here is my
 binding, please modify the key to your own liking:
 
     (global-set-key "\C-c\C-t" #'swap-regions)
+
+## Known issues
+
+- This package doesn't work with Evil and expand-region. However, fixing them is
+  beyond my capabilities. Besides, considering I almost don't use these two
+  packages, so I also don't have motivation for fixing it. If you find this
+  package useful to you (really?) and want Evil and/or expand-region support,
+  you have to fix it yourself, then send me a PR if you like.
