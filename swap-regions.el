@@ -27,6 +27,7 @@
 
 (require 'cl-lib)
 
+;;;###autoload
 (defun swap-regions (buf-A reg-A-beg reg-A-end buf-B reg-B-beg reg-B-end)
   "Swap contents in two regions."
   (interactive
