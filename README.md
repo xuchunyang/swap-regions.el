@@ -1,48 +1,10 @@
 # swap-regions.el [![MELPA](http://melpa.org/packages/swap-regions-badge.svg)](http://melpa.org/#/swap-regions)
 
-## Introduction
+You can swap two regions using
 
-This package provides a `swap-regions` command to swap (and replace) two regions
-of text.
+    M-x swap-regions [select the first region] C-M-c [select the second region] C-M-c
 
-## Screenshot
-
-![swap-regions.gif](image/swap-regions.gif)
-
-## Setup
-
-Before you can use the `swap-regions` command, you need to enable
-`swap-regions-mode`. Type M-x swap-regions-mode or adding:
-
-    (swap-regions-mode)
-
-to your init file.
-
-## Usage
-
-### M-x swap-regions
-
-Swap the current (active) region and the previous region
-
-### C-u M-x swap-regions
-
-Replace the current (active) region with the previous region
-
-### C-u C-u M-x swap-regions
-
-Replace the previous region with the current (active) region
-
-## Key Binding
-
-If you use the command a lot, you should bind some key to it.  Here is my
-binding, please modify the key to your own liking:
-
-    (global-set-key "\C-c\C-t" #'swap-regions)
-
-## Known issues
-
-- This package doesn't work with Evil and expand-region. However, fixing them is
-  beyond my capabilities. Besides, considering I almost don't use these two
-  packages, so I also don't have motivation for fixing it. If you find this
-  package useful to you (really?) and want Evil and/or expand-region support,
-  you have to fix it yourself, then send me a PR if you like.
+Note that <kbd>C-M-c</kbd> runs `exit-recursive-edit` which is bound
+by default in vanilla Emacs. And while you are selecting regions, you
+can run any Emacs command thanks to [Recursive
+Editing](https://www.gnu.org/software/emacs/manual/html_node/elisp/Recursive-Editing.html).
