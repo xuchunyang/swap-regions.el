@@ -78,6 +78,9 @@
       (goto-char reg-A-beg)
       (insert reg-B-str))))
 
+;; For backwards compatibility
+(defun swap-regions-mode (&rest _ignore))
+
 (provide 'swap-regions)
 ;;; swap-regions.el ends here
 
