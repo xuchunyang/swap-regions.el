@@ -1,6 +1,6 @@
 # swap-regions.el [![MELPA](http://melpa.org/packages/swap-regions-badge.svg)](http://melpa.org/#/swap-regions)
 
-You can swap two regions using
+You can swap text in two regions using
 
     M-x swap-regions [select the first region] C-M-c [select the second region] C-M-c
 

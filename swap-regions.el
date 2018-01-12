@@ -1,27 +1,37 @@
-;;; swap-regions.el --- Swap two regions  -*- lexical-binding: t; -*-
+;;; swap-regions.el --- Swap text in two regions  -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2016, 2018  Chunyang Xu
 
 ;; Author: Xu Chunyang <mail@xuchunyang.me>
-;; URL: https://github.com/xuchunyang/swap-regions.el
+;; Keywords: convenience
+;; Homepage: https://github.com/xuchunyang/swap-regions.el
 ;; Package-Requires: ((emacs "24"))
 
-;; swap-regions.el is free software; you can redistribute it and/or modify it
-;; under the terms of the GNU General Public License as published by the Free
-;; Software Foundation, either version 3 of the License, or (at your option) any
-;; later version.
+;; This file is not part of GNU Emacs.  However, it is distributed under the
+;; same license.
 
-;; swap-regions.el is distributed in the hope that it will be useful, but
-;; WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
-;; FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
-;; more details.
+;; This program is free software; you can redistribute it and/or modify it under
+;; the terms of the GNU General Public License as published by the Free Software
+;; Foundation, either version 3 of the License, or (at your option) any later
+;; version.
+
+;; This program is distributed in the hope that it will be useful, but WITHOUT
+;; ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+;; FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
+;; details.
 
 ;; You should have received a copy of the GNU General Public License along with
-;; this program.  If not, see <http://www.gnu.org/licenses/>.
+;; this program.  If not, see <https://www.gnu.org/licenses/>.
 
 ;;; Commentary:
 
+;; You can swap text in two regions using
 ;;
+;;   M-x swap-regions [select the first region] C-M-c [select the second region] C-M-c
+;;
+;; Note that C-M-c runs `exit-recursive-edit' which is bound
+;; by default in vanilla Emacs. And while you are selecting regions, you
+;; can run any Emacs command thanks to (info "(elisp) Recursive Editing")
 
 ;;; Code:
 
