@@ -1,4 +1,4 @@
-# swap-regions.el [![MELPA](http://melpa.org/packages/swap-regions-badge.svg)](http://melpa.org/#/swap-regions)
+# swap-regions.el [![MELPA](http://melpa.org/packages/swap-regions-badge.svg)](http://melpa.org/#/swap-regions) [![Build Status](https://travis-ci.org/xuchunyang/swap-regions.el.svg?branch=master)](https://travis-ci.org/xuchunyang/swap-regions.el)
 
 You can swap text in two regions using
 
