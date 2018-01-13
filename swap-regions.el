@@ -45,6 +45,8 @@
           (substitute-command-keys
            "Finish `\\[exit-recursive-edit]', abort \
 `\\[abort-recursive-edit]'"))
+         buf-A reg-A-beg reg-A-end
+         buf-B reg-B-beg reg-B-end
          buf-A-overlay)
      ;; Select the first region
      (unless (use-region-p)
