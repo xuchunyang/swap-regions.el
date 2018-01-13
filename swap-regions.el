@@ -37,6 +37,14 @@
 
 (require 'cl-lib)
 
+(defgroup swap-regions nil
+  "Swap text in regions."
+  :group 'convenience)
+
+(defface swap-regions-selection '((t (:inherit secondary-selection)))
+  "Face marking the previous selected region."
+  :group 'swap-regions)
+
 ;;;###autoload
 (defun swap-regions (buf-A reg-A-beg reg-A-end buf-B reg-B-beg reg-B-end)
   "Swap text in two regions."
@@ -59,7 +67,7 @@
      (deactivate-mark)
      (setq buf-A-overlay (make-overlay reg-A-beg reg-A-end))
      ;; TODO: Make the face customizable
-     (overlay-put buf-A-overlay 'face 'region)
+     (overlay-put buf-A-overlay 'face 'swap-regions-selection)
      ;; Select the second region
      (let (message-log-max)
        (message "Select the second region (%s)" hint))
