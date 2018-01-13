@@ -5,7 +5,7 @@
 ;; Author: Xu Chunyang <mail@xuchunyang.me>
 ;; Keywords: convenience
 ;; Homepage: https://github.com/xuchunyang/swap-regions.el
-;; Package-Requires: ((emacs "24"))
+;; Package-Requires: ((emacs "24.3"))
 
 ;; This file is not part of GNU Emacs.  However, it is distributed under the
 ;; same license.
