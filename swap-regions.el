@@ -66,7 +66,6 @@
            reg-A-end (region-end))
      (deactivate-mark)
      (setq buf-A-overlay (make-overlay reg-A-beg reg-A-end))
-     ;; TODO: Make the face customizable
      (overlay-put buf-A-overlay 'face 'swap-regions-selection)
      ;; Select the second region
      (let (message-log-max)
