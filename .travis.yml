@@ -21,4 +21,4 @@ install:
   - export EMACS=/tmp/emacs/bin/emacs
   - $EMACS --version
 script:
-  - $EMACS -Q --batch -f batch-byte-compile swap-regions.el
+  - make -k EMACS=$EMACS
