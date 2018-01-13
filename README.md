@@ -1,4 +1,4 @@
-# swap-regions.el [![MELPA](http://melpa.org/packages/swap-regions-badge.svg)](http://melpa.org/#/swap-regions)
+# swap-regions.el
 
 You can swap text in two regions using
 
@@ -8,3 +8,7 @@ Note that <kbd>C-M-c</kbd> runs `exit-recursive-edit` which is bound
 by default in vanilla Emacs. And while you are selecting regions, you
 can run any Emacs command thanks to [Recursive
 Editing](https://www.gnu.org/software/emacs/manual/html_node/elisp/Recursive-Editing.html).
+
+***
+[![MELPA](http://melpa.org/packages/swap-regions-badge.svg)](http://melpa.org/#/swap-regions)
+[![Build Status](https://travis-ci.org/xuchunyang/swap-regions.el.svg?branch=master)](https://travis-ci.org/xuchunyang/swap-regions.el)
