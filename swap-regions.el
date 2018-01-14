@@ -6,6 +6,7 @@
 ;; Keywords: convenience
 ;; Homepage: https://github.com/xuchunyang/swap-regions.el
 ;; Package-Requires: ((emacs "24.3"))
+;; Version: 0
 
 ;; This file is not part of GNU Emacs.  However, it is distributed under the
 ;; same license.
