@@ -1,6 +1,6 @@
 ;;; swap-regions.el --- Swap text in two regions  -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2016, 2018  Chunyang Xu
+;; Copyright (C) 2016, 2018  Xu Chunyang
 
 ;; Author: Xu Chunyang <mail@xuchunyang.me>
 ;; Keywords: convenience
@@ -100,9 +100,10 @@
       (insert reg-B-str))))
 
 (provide 'swap-regions)
-;;; swap-regions.el ends here
 
 ;; Local Variables:
 ;; fill-column: #x50
 ;; indent-tabs-mode: nil
 ;; End:
+
+;;; swap-regions.el ends here
