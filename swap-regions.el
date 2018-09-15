@@ -79,8 +79,10 @@
      (deactivate-mark)
      (list buf-A reg-A-beg reg-A-end buf-B reg-B-beg reg-B-end)))
   ;; Swap these two regions
-  (let ((reg-A-str (buffer-substring reg-A-beg reg-A-end))
-        (reg-B-str (buffer-substring reg-B-beg reg-B-end)))
+  (let ((reg-A-str (with-current-buffer buf-A
+                     (buffer-substring reg-A-beg reg-A-end)))
+        (reg-B-str (with-current-buffer buf-B
+                     (buffer-substring reg-B-beg reg-B-end))))
     (when (< reg-B-beg reg-A-beg)
       (cl-psetq buf-A buf-B
                 reg-A-beg reg-B-beg

@@ -47,6 +47,17 @@
         (should (string= "Hello, Hello!" (buffer-string))))
       (should (string= "World, World!" (buffer-string))))))
 
+(ert-deftest swap-regions-different-buffers ()
+  (let ((buf-A (generate-new-buffer "*buf-A*"))
+        (buf-B (generate-new-buffer "*buf-B*")))
+    (with-current-buffer buf-A (insert "AA"))
+    (with-current-buffer buf-B (insert "B"))
+    (swap-regions buf-A 2 3
+                  buf-B 1 2)
+    (should (string= (with-current-buffer buf-A (buffer-string))
+                     "AB"))
+    (should (string= (with-current-buffer buf-B (buffer-string))
+                     "A"))))
 
 (provide 'swap-regions-tests)
 ;;; swap-regions-tests.el ends here
